@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TyrePlex</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: rgb(239, 229, 229);
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            /* background-color: #fff; */
+            background-color: #f9f9f9;
+            border-radius: 8px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .navbar-brand span {
+            color: rgb(241, 2, 2);
+        }
+        
+        .btn-hover-red {
+            background-color: rgb(214, 107, 107);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-hover-red:hover {
+            background-color: red;
+        }
+        
+        .review-block {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            min-width: 200px;
+        }
+        
+        .review-slider {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 15px;
+        }
+        
+        .review-slider::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .reviewer-img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .deal-brand {
+            border: 1px solid #ddd;
+            text-decoration: #cdd9e4;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            width: 120px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            flex-grow: 1;
+            flex-basis: 0;
+            max-width: 120px;
+        }
+        
+        .deal-slider {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 15px;
+        }
+        
+        .deal-slider::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .service-block {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .tyre-block {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .tyre-block img {
+            width: 80px;
+            float: left;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+        
+        .tyre-block:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .breadcrumb-item a {
+            text-decoration: none;
+            color: #6c757d;
+        }
+        
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .payment-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .payment-option::before {
+            content: '✔';
+            color: green;
+            margin-right: 10px;
+        }
+        
+        .question-block {
+            border: 1px solid #ddd;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .question-block .search-bar {
+            display: flex;
+            gap: 10px;
+            flex-grow: 1;
+        }
+        
+        footer {
+            margin-top: 40px;
+            padding: 20px 0;
+            /* background-color: #f8f9fa; */
+            background-color: rgb(239, 229, 229);
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .footer-links li {
+            display: inline;
+            margin-right: 15px;
+        }
+        
+        .footer-links a {
+            text-decoration: none;
+            color: #6c757d;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .social-icons a {
+            margin: 0 10px;
+            color: #6c757d;
+        }
+        
+        .social-icons a:hover {
+            color: #000;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <div class="container">
+            <a class="navbar-brand" href="#"><span>Tyre</span>Plex</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="carTyreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Car Tyre
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="carTyreDropdown">
+                            <li><a class="dropdown-item" href="https://www.mrftyres.com/">MRF Tyres</a></li>
+                            <li><a class="dropdown-item" href="https://www.ceat.com/">CEAT Tyres</a></li>
+                            <li><a class="dropdown-item" href="https://www.goodyear.co.in/tyre">Goodyear Tyres</a></li>
+                            <li><a class="dropdown-item" href="#">Apollo Tyres</a></li>
+                            <li><a class="dropdown-item" href="#">Bridgestone Tyres</a></li>
+                            <li><a class="dropdown-item" href="#">JK Tyres</a></li>
+                            <li><a class="dropdown-item" href="#">Michelin Tyres</a></li>
+                            <li><a class="dropdown-item" href="#">All Car Tyres</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="bikeTyreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Bike Tyre
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="bikeTyreDropdown">
+                            <li><a class="dropdown-item" href="https://www.mrftyres.com/">MRF Tyres</a></li>
+                            <li><a class="dropdown-item" href="https://www.ceat.com/">CEAT Tyres</a></li>
+                            <li><a class="dropdown-item" href="https://www.goodyear.co.in/tyre">Goodyear Tyres</a></li>
+                            <li><a class="dropdown-item" href="#">Apollo Tyres</a></li>
+                            <li><a class="dropdown-item" href="#">Bridgestone Tyres</a></li>
+                            <li><a class="dropdown-item" href="#">JK Tyres</a></li>
+                            <li><a class="dropdown-item" href="#">Michelin Tyres</a></li>
+                            <li><a class="dropdown-item" href="#">All Car Tyres</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="tyrePressureDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Tyre Pressure
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="tyrePressureDropdown">
+                            <li><a class="dropdown-item" href="#">Option 1</a></li>
+                            <li><a class="dropdown-item" href="#">Option 2</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="commercialTyreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Commercial Tyres
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="commercialTyreDropdown">
+                            <li><a class="dropdown-item" href="#">All commercial tyres</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="accessoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Accessories
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="accessoriesDropdown">
+                            <li><a class="dropdown-item" href="#">Accessories</a></li>
+                            <li><a class="dropdown-item" href="#">Batteries</a></li>
+                            <li><a class="dropdown-item" href="#">Alloy Wheels</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            More
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="moreDropdown">
+                            <li><a class="dropdown-item" href="#">CashBack Offer</a></li>
+                            <li><a class="dropdown-item" href="#">Find Tyre Dealers</a></li>
+                            <li><a class="dropdown-item" href="#">Compare Tyres</a></li>
+                            <li><a class="dropdown-item" href="#">Are you a Tyre Dealer</a></li>
+                            <li><a class="dropdown-item" href="#">Wheel Balancing</a></li>
+                            <li><a class="dropdown-item" href="#">wheel-Alignment</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-4">
+        <!-- Business Info and Images -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h2>SHREE HEMKUNT TYRES AND SERVICES</h2>
+                <p class="verified">✔ Verified</p>
+                <p class="star-rating">4.9 ★ | 2278 Reviews</p>
+                <p>PLOT NUMBER-09 GROUND FLOOR CISF CAMPUS ROAD, AHINSA KHAND-02 INDIRAPURAM, Ghaziabad, Uttar Pradesh, 201014
+                </p>
+                <p>Open - Monday to Sunday - 10:00AM to 8:00PM</p>
+                <button class="btn btn-hover-red" onclick="openMap()">Get Directions</button>
+            </div>
+            <div class="col-md-6 d-flex align-items-center justify-content-center flex-wrap">
+                <img src="./images/shop3.jpg" alt="Image 1" class="img-fluid mb-2" style="max-width: 100%; height: auto;" data-bs-toggle="modal" data-bs-target="#imageModal1">
+                <img src="./images/shop3.jpg" alt="Image 2" class="img-fluid" style="max-width: 100%; height: auto;" data-bs-toggle="modal" data-bs-target="#imageModal2">
+            </div>
+        </div>
+
+        <!-- Modal for Image 1 -->
+        <div class="modal fade" id="imageModal1" tabindex="-1" aria-labelledby="imageModalLabel1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="./images/shop3.jpg" alt="Image 1" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Image 2 -->
+        <div class="modal fade" id="imageModal2" tabindex="-1" aria-labelledby="imageModalLabel2" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="./images/shop3.jpg" alt="Image 2" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Reviews -->
+        <div class="section-container">
+            <h4>2278 Google Reviews</h4>
+            <div class="review-slider">
+                <div class="review-block d-flex">
+                    <img src="./images/letter-r.png" alt="Customer 1" class="reviewer-img">
+                    <div>
+                        <h5>Rishabh Rai</h5>
+                        <p>Best tyre shop in Indirapuram. Good dealing with customer. All types tyre available here. Price also reasonable. Overall good experience.</p>
+                    </div>
+                </div>
+                <div class="review-block d-flex">
+                    <img src="./images/letter-m.png" alt="Customer 2" class="reviewer-img">
+                    <div>
+                        <h5>Mrinal Rai</h5>
+                        <p>Went for Tyre change. Ultimate service by shoppe boys. Owner behavior very cool. Guide as per your budget. Highly recommend.</p>
+                    </div>
+                </div>
+                <div class="review-block d-flex">
+                    <img src="./images/letter-p.png" alt="Customer 3" class="reviewer-img">
+                    <div>
+                        <h5>Pradeep Kumar</h5>
+                        <p>Best tyre shop in Indirapuram. Good dealing with customer. All types tyre available here. Price also reasonable. Overall good experience.</p>
+                    </div>
+                </div>
+                <div class="review-block d-flex">
+                    <img src="./images/letter-s.png" alt="Customer 4" class="reviewer-img">
+                    <div>
+                        <h5>Satyendra Rai</h5>
+                        <p>Best tyre shop in Indirapuram. Good dealing with customer. All types tyre available here. Price also reasonable. Overall good experience.</p>
+                    </div>
+                </div>
+                <div class="review-block d-flex">
+                    <img src="./images/letter-s.png" alt="Customer 5" class="reviewer-img">
+                    <div>
+                        <h5>Sagar Rai</h5>
+                        <p>Best tyre shop in Indirapuram. Good dealing with customer. All types tyre available here. Price also reasonable. Overall good experience.</p>
+                    </div>
+                </div>
+                <div class="review-block d-flex">
+                    <img src="./images/letter-r.png" alt="Customer 6" class="reviewer-img">
+                    <div>
+                        <h5>Rajeev Rai</h5>
+                        <p>The service was top-notch! Great job and attention to detail. Will definitely recommend to others.
+                        </p>
+                    </div>
+                </div>
+                <div class="review-block d-flex">
+                    <img src="./images/letter-s.png" alt="Customer 7" class="reviewer-img">
+                    <div>
+                        <h5>Sara Rai</h5>
+                        <p>Very professional and quick service. The staff were friendly and helpful. I highly recommend this place!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deals on Tyres -->
+        <div class="section-container">
+            <h4>Deals on Tyres</h4>
+            <div class="deal-slider">
+                <a href="#" class="deal-brand">
+                    <div><img src="./images/Michelin.jpg" alt="Customer 6" class="reviewer-img"></div>
+                    <p>Michelin</p>
+                </a>
+                <a href="#" class="deal-brand">
+                    <div><img src="./images/bridgestone.jpg" alt="Customer 6" class="reviewer-img"></div>
+                    <p>Bridgestone</p>
+                </a>
+                <a href="#" class="deal-brand">
+                    <div><img src="./images/goodyear.jpg" alt="Customer 6" class="reviewer-img"></div>
+                    <p>Goodyear</p>
+                </a>
+                <a href="#" class="deal-brand">
+                    <div><img src="./images/yokohama.jpg" alt="Customer 6" class="reviewer-img"></div>
+                    <p>Yokohama</p>
+                </a>
+                <a href="#" class="deal-brand">
+                    <div><img src="./images/apollo.jpg" alt="Customer 6" class="reviewer-img"></div>
+                    <p>Apollo</p>
+                </a>
+                <a href="#" class="deal-brand">
+                    <div><img src="./images/continental.jpg" alt="Customer 6" class="reviewer-img"></div>
+                    <p>Continental</p>
+                </a>
+                <a href="#" class="deal-brand">
+                    <div><img src="./images/pirelli.jpg" alt="Customer 6" class="reviewer-img"></div>
+                    <p>Pirelli</p>
+                </a>
+                <a href="#" class="deal-brand">
+                    <div><img src="./images/ceat.jpg" alt="Customer 6" class="reviewer-img"></div>
+                    <p>CEAT</p>
+                </a>
+                <a href="#" class="deal-brand">
+                    <div><img src="./images/hank-kook.jpg" alt="Customer 6" class="reviewer-img"></div>
+                    <p>Hankook</p>
+                </a>
+                <a href="#" class="deal-brand">
+                    <div><img src="./images/mrf.jpg" alt="Customer 6" class="reviewer-img"></div>
+                    <p>MRF</p>
+                </a>
+                <a href="#" class="deal-brand">
+                    <div><img src="./images/jk.jpg" alt="Customer 6" class="reviewer-img"></div>
+                    <p>JK Tyre</p>
+                </a>
+                <a href="#" class="deal-brand">
+                    <div><img src="./images/tvs.jpg" alt="Customer 6" class="reviewer-img"></div>
+                    <p>TVS Eurogrip</p>
+                </a>
+                <a href="#" class="deal-brand">
+                    <div><img src="./images/maxxis.jpg" alt="Customer 6" class="reviewer-img"></div>
+                    <p>Maxxis</p>
+                </a>
+                <a href="#" class="deal-brand">
+                    <div><img src="./images/dunlop.jpg" alt="Customer 6" class="reviewer-img"></div>
+                    <p>Dunlop</p>
+                </a>
+                <a href="#" class="deal-brand">
+                    <div><img src="./images/firestone.jpg" alt="Customer 6" class="reviewer-img"></div>
+                    <p>Firestone</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- Services Offered by this Dealer -->
+        <div class="section-container">
+            <h4>Services Offered by this Dealer</h4>
+            <div class="row">
+                <div class="col-md-6 service-block">
+                    <img src="./images/wheel-balancing.jpg" alt="Wheel Balancing" class="img-fluid">
+                    <p>Wheel Balancing</p>
+                    <button class="btn btn-primary">Book Now</button>
+                </div>
+                <div class="col-md-6 service-block">
+                    <img src="./images/wheel-alignment.jpg" alt="Wheel Alignment" class="img-fluid">
+                    <p>Wheel Alignment</p>
+                    <button class="btn btn-primary">Book Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tyres Sold by this Dealer -->
+        <div class="section-container">
+            <h4>Tyres Sold by this Dealer</h4>
+            <div class="row">
+                <div class="col-md-4 tyre-block" onclick="openTyrePage()">
+                    <div class="d-flex justify-content-between">
+                        <h5>Apollo</h5>
+                        <span class="text-warning">5 Year Warranty</span>
+                    </div>
+                    <p>AMAZER 4G LIFE</p>
+                    <p>145/80 R12</p>
+                    <div class="d-flex align-items-center justify-content-start">
+                        <span class="star-rating">★★★★☆</span>
+                        <span>(213 Reviews)</span>
+                    </div>
+                    <p><strong>₹3,499</strong> <span class="text-danger">20% off</span></p>
+                    <p>Tube Type</p>
+                    <img src="./images/tyre.jpg" alt="Apollo Tyre">
+
+
+                </div>
+                <div class="col-md-4 tyre-block" onclick="openTyrePage()">
+                    <div class="d-flex justify-content-between">
+                        <h5>Bridgestone</h5>
+                        <span class="text-warning">3 Year Warranty</span>
+                    </div>
+                    <p>Ecopia EP150</p>
+                    <p>155/80 R13</p>
+                    <div class="d-flex align-items-center justify-content-start">
+                        <span class="star-rating">★★★★☆</span>
+                        <span>(150 Reviews)</span>
+                    </div>
+                    <p><strong>₹4,999</strong> <span class="text-danger">15% off</span></p>
+                    <p>Radial</p>
+                    <img src="./images/tyre2.jpg" alt="Bridgestone Tyre">
+                </div>
+                <div class="col-md-4 tyre-block" onclick="openTyrePage()">
+                    <div class="d-flex justify-content-between">
+                        <h5>Michelin</h5>
+                        <span class="text-warning">4 Year Warranty</span>
+                    </div>
+                    <p>Energy XM2+</p>
+                    <p>165/70 R14</p>
+                    <div class="d-flex align-items-center justify-content-start">
+                        <span class="star-rating">★★★★★</span>
+                        <span>(320 Reviews)</span>
+                    </div>
+                    <p><strong>₹5,999</strong> <span class="text-danger">10% off</span></p>
+                    <p>Tubeless</p>
+                    <img src="./images/tyre.jpg" alt="Michelin Tyre">
+                </div>
+                <!-- Row 2 of Tyres -->
+                <div class="col-md-4 tyre-block" onclick="openTyrePage()">
+                    <div class="d-flex justify-content-between">
+                        <h5>Pirelli</h5>
+                        <span class="text-warning">4 Year Warranty</span>
+                    </div>
+                    <p>Cinturato P7</p>
+                    <p>195/65 R15</p>
+                    <div class="d-flex align-items-center justify-content-start">
+                        <span class="star-rating">★★★★★</span>
+                        <span>(150 Reviews)</span>
+                    </div>
+                    <p><strong>₹7,999</strong> <span class="text-danger">10% off</span></p>
+                    <p>Tubeless</p>
+                    <img src="./images/tyre2.jpg" alt="Pirelli Tyre">
+                </div>
+                <div class="col-md-4 tyre-block" onclick="openTyrePage()">
+                    <div class="d-flex justify-content-between">
+                        <h5>CEAT</h5>
+                        <span class="text-warning">3 Year Warranty</span>
+                    </div>
+                    <p>Milaze X3</p>
+                    <p>165/80 R14</p>
+                    <div class="d-flex align-items-center justify-content-start">
+                        <span class="star-rating">★★★★☆</span>
+                        <span>(120 Reviews)</span>
+                    </div>
+                    <p><strong>₹5,499</strong> <span class="text-danger">15% off</span></p>
+                    <p>Tubeless</p>
+                    <img src="./images/tyre.jpg" alt="CEAT Tyre">
+                </div>
+                <div class="col-md-4 tyre-block" onclick="openTyrePage()">
+                    <div class="d-flex justify-content-between">
+                        <h5>Continental</h5>
+                        <span class="text-warning">5 Year Warranty</span>
+                    </div>
+                    <p>ContiComfortContact CC6</p>
+                    <p>175/65 R15</p>
+                    <div class="d-flex align-items-center justify-content-start">
+                        <span class="star-rating">★★★★★</span>
+                        <span>(180 Reviews)</span>
+                    </div>
+                    <p><strong>₹6,999</strong> <span class="text-danger">15% off</span></p>
+                    <p>Tubeless</p>
+                    <img src="./images/tyre2.jpg" alt="Continental Tyre">
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <button class="btn btn-outline-primary">View More</button>
+            </div>
+        </div>
+
+        <!-- Breadcrumb Navigation -->
+        <nav aria-label="breadcrumb" class="my-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Tyre Dealers</a></li>
+                <li class="breadcrumb-item"><a href="#">Tyre Dealers Ghaziabad</a></li>
+                <li class="breadcrumb-item active" aria-current="page">SHREE HEMKUNT TYRES AND SERVICES</li>
+            </ol>
+        </nav>
+
+        <!-- Payment Options -->
+        <div class="section-container">
+            <h4>Payment Mode</h4>
+            <ul>
+                <li class="payment-option">Deposit to Account</li>
+                <li class="payment-option">Net Banking</li>
+                <li class="payment-option">Credit Card/Debit Card</li>
+                <li class="payment-option">UPI</li>
+                <li class="payment-option">Wallets (PayTM/PhonePe/Amazon etc.)</li>
+            </ul>
+        </div>
+
+        <!-- Question Block -->
+        <div class="section-container question-block">
+            <div>
+                <h4>Have a question about Tyres?</h4>
+                <p>Feel free to ask us anything about tyres!</p>
+            </div>
+            <div class="search-bar">
+                <input type="text" class="form-control" placeholder="Search or ask a question">
+                <button class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <!-- <div class="footer-logo">TyrePlex</div> -->
+            <a class="navbar-brand" href="#"><span>Tyre</span>Plex</a>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/company/tyreplex/"><img src="./images/instagram (1).png" alt="Instagram"></a>
+                <a href="https://www.linkedin.com/company/tyreplex/"><img src="./images/facebook (1).png" alt="Facebook"></a>
+                <a href="https://www.linkedin.com/company/tyreplex/"><img src="./images/linkedin (1).png" alt="Linkdin"></a>
+            </div>
+            <ul class="footer-links">
+                <li><a href="#">Who We Are</a></li>
+                <li><a href="#">Are you a Tyre Dealer?</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of use</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Career</a></li>
+                <li><a href="#">Shipping & Return Policy</a></li>
+            </ul>
+            <p>&copy; 2024 TyrePlex Technologies & Commerce Pvt. Ltd. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function openMap() {
+            window.open("https://www.google.com/maps", "_blank");
+        }
+
+        function openTyrePage() {
+            window.location.href = "#";
+        }
+    </script>
+</body>
+
+</html>
